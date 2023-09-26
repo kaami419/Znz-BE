@@ -8,7 +8,7 @@ async function connectToMongo() {
      process.env.MONGO_CONNECTION,
       { useNewUrlParser: true }
     );
-    console.log("Connection to DB Successful"`);
+    console.log("Connection to DB Successful");
   } catch (err) {
     console.error("Error connecting to MongoDB", err);
   }
