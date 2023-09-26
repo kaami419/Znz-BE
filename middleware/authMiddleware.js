@@ -1,4 +1,5 @@
 const jwt = require("jsonwebtoken");
+require("dotenv").config();
 
 exports.verifyToken = async (req, res, next) => {
   const authHeader = req.headers.authorization;
@@ -16,8 +17,9 @@ exports.verifyToken = async (req, res, next) => {
     });
   }
 
+
   try {
-    const decodedToken = await jwt.verify(token, "paypal");
+    const decodedToken = await jwt.verify(token, process.env.SECRET_KEY);
     req.userData = { sellerId: decodedToken._id };
     next();
   } catch (error) {
