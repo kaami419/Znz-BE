@@ -111,7 +111,7 @@ const bodyParser = require("body-parser");
 const port = process.env.PORT;
 const cors = require("cors");
 const fileUpload = require("express-fileupload");
-const socketIo = require("socket.io");
+// const socketIo = require("socket.io");
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -172,27 +172,27 @@ const server = app.listen(port, () => {
   console.log("Server is running on port", port);
 });
 
-// Socket.io connection handling
-const io = socketIo(server, {
-  cors: {
-    origin: "http://localhost:3001",
-    methods: ["GET", "POST"],
-  },
-});
-io.on("connection", (socket) => {
-  console.log("A user connected:", socket.id);
+// // Socket.io connection handling
+// const io = socketIo(server, {
+//   cors: {
+//     origin: "http://localhost:3001",
+//     methods: ["GET", "POST"],
+//   },
+// });
+// io.on("connection", (socket) => {
+//   console.log("A user connected:", socket.id);
 
-  // Socket.io event handlers
-  socket.on("sendMessage", (data) => {
-    // Process and broadcast the message
-    socket.join(data.chatId); // Join the chat room
-    io.to(data.chatId).emit("newMessage", data);
-    console.log("chat id:", chatId);
-  });
+//   // Socket.io event handlers
+//   socket.on("sendMessage", (data) => {
+//     // Process and broadcast the message
+//     socket.join(data.chatId); // Join the chat room
+//     io.to(data.chatId).emit("newMessage", data);
+//     console.log("chat id:", chatId);
+//   });
 
-  // Handle disconnection
-  socket.on("disconnect", () => {
-    console.log("A user disconnected:", socket.id);
-  });
-});
+//   // Handle disconnection
+//   socket.on("disconnect", () => {
+//     console.log("A user disconnected:", socket.id);
+//   });
+// });
 
