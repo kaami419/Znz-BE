@@ -55,7 +55,7 @@ exports.createJob = async (req, res, next) => {
 
     const previousJob = await Job.findOne({
       User: userId,
-      service_Titlee,
+      service_Title,
       minimum_budget,
       service_Description,
       requirements,
