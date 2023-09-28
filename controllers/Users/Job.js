@@ -103,7 +103,7 @@ exports.getAJob = async (req, res, next) => {
 
     const job = await Job.find({ category: { $in: [categoryId] } })
       .populate("category")
-      .populate("job_level");
+      .populate([{ path: "job_level", strictPopulate: false }]);
 
     const count = job.length;
     if (count === 0) {
