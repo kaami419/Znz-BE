@@ -5,7 +5,7 @@ module.exports = function validateRegisterInput(data) {
     let errors = {};
 
     // Converts empty fields to String in order to validate them
-    data.image = !isEmpty(data.image) ? data.image : '';
+    // data.image = !isEmpty(data.image) ? data.image : '';
     data.first_name = !isEmpty(data.first_name) ? data.first_name : '';
     data.last_name = !isEmpty(data.last_name) ? data.last_name : '';
     data.email = !isEmpty(data.email) ? data.email : '';
@@ -17,9 +17,9 @@ module.exports = function validateRegisterInput(data) {
     data.address = !isEmpty(data.address) ? data.address : '';
     data.language = !isEmpty(data.language) ? data.language : '';
 
-    if (Validator.isEmpty(data.image)) {
-        errors.image = 'Image field is required';
-    }
+    // if (Validator.isEmpty(data.image)) {
+    //     errors.image = 'Image field is required';
+    // }
 
     if (Validator.isEmpty(data.first_name)) {
         errors.first_name = 'First name field is required';
