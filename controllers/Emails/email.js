@@ -211,9 +211,14 @@ exports.EmailForForgetPassword = async (req, res) => {
 exports.forgetPassword = async (req, res) => {
   try {
     const userId = req.params.id;
-    const { newPassword } = req.body;
+    const { email,newPassword } = req.body;
 
-    const user = await User.findById(userId);
+    let user = {};
+    if (userId) {
+      user = await User.findById(userId);
+    } else {
+      user = await User.findOne({ email });
+    }
 
     if (!user) {
       return res.status(404).json({
